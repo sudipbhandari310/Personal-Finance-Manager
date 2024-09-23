@@ -6,6 +6,7 @@ const postUser = async (data) => {
     const result = await qb.insert('users', data);
     return result;
   } catch (err) {
+    res.send(err);
     console.log(err);
   } finally {
     qb.release();
@@ -24,14 +25,6 @@ const checkIfEmailExists = async (email) => {
       .where('email', email)
       .get();
 
-    // Log the query being executed
-    // console.log('Generated SQL Query:', qb.last_query());
-
-    // Check and log the result of the query
-    // console.log('Query result:', result);
-
-
-    
     // Return the result
     return result.length > 0 ? result[0] : null;
   } catch (error) {

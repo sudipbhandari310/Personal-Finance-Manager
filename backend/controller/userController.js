@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const signUp = async (req, res) => {
   const { username, email, password } = req.body;
+  // console.log('req received from frontend');
   //validate incoming request
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -32,6 +33,7 @@ const signUp = async (req, res) => {
         message: 'Signup Failed',
       });
     }
+    console.log('User Details Stored');
     res.status(201).json({
       message: 'User Created Successfully',
       result: user,
@@ -42,10 +44,13 @@ const signUp = async (req, res) => {
 };
 
 const logIn = async (req, res) => {
+  console.log('inside login');
   const { email, password } = req.body;
   //validate incoming request
   const errors = validationResult(req);
+  console.log('Validation Result:', errors); // Check what this outputs
   if (!errors.isEmpty()) {
+    console.log('Validation errors:', errors.array());
     return res.status(400).json({ errors: errors.array() });
   }
   //check existing email
@@ -53,7 +58,7 @@ const logIn = async (req, res) => {
   console.log(user);
 
   if (!user) {
-    return res.status(404).json({ message: 'Invalid username or password' });
+    return res.status(404).json({ message: 'User Not Found' });
   }
 
   //verify the password
@@ -61,8 +66,8 @@ const logIn = async (req, res) => {
   if (!isMatch) {
     return res.status(400).json({ message: 'Invalid password' });
   }
-
-  //create payload
+  console.log('User logged in');
+ // create payload
   const payload = {
     id: user.id,
     username: user.username,
@@ -72,15 +77,10 @@ const logIn = async (req, res) => {
     expiresIn: '10min',
   });
 
-  return res.status(400).json({
+  return res.status(200).json({
     message: 'Login Successful',
     token: token,
   });
 };
 
-const logOut = async (req, res) => {
-  res.cookie('jwt', '', { expiresIn: 1 });
-  res.redirect('/');
-};
-
-module.exports = { signUp, logIn, logOut };
+module.exports = { signUp, logIn };

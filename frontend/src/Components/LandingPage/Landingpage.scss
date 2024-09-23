@@ -1,0 +1,110 @@
+/* Landingpage.scss */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(198, 115, 0);
+  color: white;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  // background-color:  #ff6f61;
+}
+
+.navbar .logo img {
+  height: 50px;
+  margin-right: 10px;
+  
+}
+
+.navbar .logo h1 {
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  
+}
+.title{
+  display: flex;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #61dafb;
+}
+
+.landing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background: cadetblue;
+  // background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  color: white;
+  text-align: center;
+}
+
+.hero {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero h2 {
+  font-size: 24px;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cta-buttons .btn-primary,
+.cta-buttons .btn-secondary {
+  padding: 12px 30px;
+  font-size: 18px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta-buttons .btn-primary {
+  background-color: #ff6f61;
+  color: white;
+}
+
+.cta-buttons .btn-primary:hover {
+  background-color: #ff5733;
+}
+
+.cta-buttons .btn-secondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}

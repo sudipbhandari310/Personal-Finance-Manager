@@ -1,15 +1,25 @@
-// index.js
 const express = require('express');
 const app = express();
-const pool = require('./db'); // If db.js is correctly configured
-const userRoutes = require('./Routes/userRoutes'); // Fix this import
+const pool = require('./db');
+const cors = require('cors');
+const userRoutes = require('./Routes/userRoutes');
 const expenseRoutes = require('./Routes/expenseRoutes');
+
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST'],
+  })
+);
 
 // Middleware to parse incoming JSON
 app.use(express.json());
-
-// Use the user routes with a base path
+app.get('/test', (req, res) => {
+  res.send('Route Test Successful');
+});
+//base path
 app.use('/api', userRoutes);
+
 app.use('/api', expenseRoutes);
 
 app.listen(3000, () => {
